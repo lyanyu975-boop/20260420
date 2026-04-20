@@ -24,12 +24,17 @@ function draw() {
   let y = (height - vHeight) / 2;
   
   // 在畫布上顯示攝影機影像
-  // image(影像來源, x, y, 寬度, 高度)
+  push();
+  // 將座標原點移至畫布右側，並水平翻轉 X 軸以達到鏡像效果
+  translate(width, 0);
+  scale(-1, 1);
+  
+  // 繪製影像，此時的 x 座標會自動從反轉後的右側計算，保持置中
   image(capture, x, y, vWidth, vHeight);
+  pop();
 }
 
 // 當視窗大小改變時，自動調整畫布大小
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
-
